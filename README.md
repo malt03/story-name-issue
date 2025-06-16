@@ -1,54 +1,31 @@
-# React + TypeScript + Vite
+[Storybook](https://684fe690b6355c751bfefdd4-ylxeddyxrc.chromatic.com/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+```tsx
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-Currently, two official plugins are available:
+import { Foo } from "./Foo";
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+const meta = { component: Foo } satisfies Meta<typeof Foo>;
 
-## Expanding the ESLint configuration
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+export const A: Story = {
+  name: "NameA",
+};
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+export const B: Story = {
+  name: "NameB",
+};
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+export const C: Story = {
+  name: `NameC`,
+};
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+export const D: Story = {
+  name: "NameD" as const,
+};
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+export const E: Story = {};
+E.name = "NameE";
 ```
